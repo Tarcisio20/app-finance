@@ -1,13 +1,17 @@
+import { ImageMenu } from '@/components/home/image-menu';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { Tabs } from 'expo-router';
 
 export default function TabsLayout() {
-    return <Tabs screenOptions={{ headerShown : false }} >
+    return <Tabs screenOptions={{ 
+            headerShown : false,
+            tabBarStyle : { backgroundColor : '#1F222A', paddingVertical : 6, height : 60, borderTopColor : 'white'}
+        }} >
         <Tabs.Screen
             name="index"
             options={{
-                title : 'Home',
-                tabBarIcon : ({ color }) => <FontAwesome6 name="house" size={28} color={color} />,
+                title : '',
+                tabBarIcon : ({ color }) => <ImageMenu image='home'  />,
     
             }}
         />
