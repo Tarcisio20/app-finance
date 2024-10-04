@@ -30,7 +30,7 @@ export default function Screen(){
             <Input label='Usuário' onChangeText={handleUser} value={user} placeholder='Digite o usuário'  />
             <Input label='Senha' onChangeText={handlePassword} value={password} placeholder='Digite a senha' password  />
            <View className='mt-20'>
-              <Button label='Entrar' onPress={()=>{}} size='large' />
+              <Button label='Entrar' onPress={()=>router.replace('/(tabs)')} size='large' />
               <View className='mt-4 flex-row gap-1 justify-end'>
                 <Text className='text-white text-lg'>Não tem conta?</Text>
                   <Text className='text-primary text-lg cursor-pointer' onPress={()=>router.replace('/register')}>Cadastrar</Text>
