@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const Page = ({ children, className, type = false } : Props) => {
-    return <SafeAreaView className={`flex-1 bg-primary ${Platform.OS === 'android' ? 'pt-8' : ''} ${className}`} >
+    return <SafeAreaView className={`flex-1 bg-primary ${Platform.OS === 'android' ? 'pt-10' : ''} ${className}`} >
         {type  ?
             <StatusBar backgroundColor={'#1F222A'} />
             :

@@ -2,6 +2,7 @@ import { ImageMenu } from "@/components/home/image-menu";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Tabs } from "expo-router";
 import { useIsFocused } from "@react-navigation/native";
+import { View, Text } from "react-native";
 
 export default function TabsLayout() {
   const isFocused = useIsFocused();
@@ -21,16 +22,19 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: "",
-          tabBarIcon: ({ color }) => (
-            <ImageMenu image="home" active={isFocused} />
-          ),
+          tabBarIcon: ({ color, focused }) => <View className={`justufy-center items-center mt-2 ${focused ? 'bg-primary p-2 rounded-full' : 'bg-transparent'}`}>
+                <ImageMenu image="home" />
+            </View>
+          ,
         }}
       />
       <Tabs.Screen
         name="received"
         options={{
           title: "",
-          tabBarIcon: ({ color }) => <ImageMenu image="received" />,
+          tabBarIcon: ({ color, focused }) => <View className={`justufy-center items-center mt-2 ${focused ? 'bg-primary p-2 rounded-full' : 'bg-transparent'}`}> 
+          <ImageMenu image="received" />
+          </View>,
         }}
       />
 
@@ -38,7 +42,9 @@ export default function TabsLayout() {
         name="payments"
         options={{
           title: "",
-          tabBarIcon: ({ color }) => <ImageMenu image="payments" />,
+          tabBarIcon: ({ color, focused }) => <View className={`justufy-center items-center mt-2 ${focused ? 'bg-primary p-2 rounded-full' : 'bg-transparent'}`}>
+              <ImageMenu image="payments" />
+          </View>
         }}
       />
 
@@ -46,7 +52,9 @@ export default function TabsLayout() {
         name="config"
         options={{
           title: "",
-          tabBarIcon: ({ color }) => <ImageMenu image="config" />,
+          tabBarIcon: ({ color, focused }) => <View className={`justufy-center items-center mt-2 ${focused ? 'bg-primary p-2 rounded-full' : 'bg-transparent'}`}>
+              <ImageMenu image="config" />
+          </View> 
         }}
       />
 
@@ -54,7 +62,9 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: "",
-          tabBarIcon: ({ color }) => <ImageMenu image="profile" />,
+          tabBarIcon: ({ color, focused }) =><View className={`justufy-center items-center mt-2 ${focused ? 'bg-primary p-2 rounded-full' : 'bg-transparent'}`}> 
+            <ImageMenu image="profile" />
+          </View>
         }}
       />
     </Tabs>

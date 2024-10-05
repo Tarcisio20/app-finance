@@ -1,5 +1,7 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 export default function Screen() {
-    return <Text>payments</Text>
+    return <View>
+        <Text>payments</Text>
+    </View> 
 }
