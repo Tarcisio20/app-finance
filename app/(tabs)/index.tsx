@@ -11,7 +11,7 @@ export default function Screen() {
           <View className="flex-1 items-center gap-8 w-[400px]">
             <Image
               source={require("../../assets/home/credit-card-image.png")}
-              className="-mt-20 w-[263px] h-[145px] mb-8"
+              className="-mt-20 w-[263px] h-[145px] mb-10"
             />
             <RotuleInfos label="Recebimentos:" value={0} color="#24C467" />
             <RotuleInfos label="Despesas:" value={0} color="#FD6F70" />
