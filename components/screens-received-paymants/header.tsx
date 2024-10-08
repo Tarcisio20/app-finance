@@ -6,9 +6,10 @@ type Props = {
   value: number;
   active?: boolean;
   color?: string;
+  onPress ?: () => void; 
 };
 
-export const Header = ({ label, value, active, color }: Props) => {
+export const Header = ({ label, value, active, color, onPress }: Props) => {
   return (
     <View className="w-80  justify-center items-center">
       <Text className="text-themeDark uppercase text-xl mb-1 font-bold">
@@ -24,7 +25,7 @@ export const Header = ({ label, value, active, color }: Props) => {
         style={{ backgroundColor: color }}
         onPress={() => {}}
       >
-        <Text className="text-white uppercase">Adicionar</Text>
+        <Text className="text-white uppercase" onPress={onPress}>Adicionar</Text>
       </Pressable>
     </View>
   );

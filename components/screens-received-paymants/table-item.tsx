@@ -8,9 +8,10 @@ type Props = {
   item: Received;
   open: ()=>void;
   setId : (newValue : number)=>void;
+  openDelModal : () => void;
 };
 
-export const TableItem = ({ item, open, setId }: Props) => {
+export const TableItem = ({ item, open, setId, openDelModal }: Props) => {
 
   
   const handleEdit = (id: number) => {
@@ -18,7 +19,8 @@ export const TableItem = ({ item, open, setId }: Props) => {
     open()
   };
   const handleExcluir = (id: number) => {
-    Alert.alert("Excluir " + id);
+    setId(id)
+    openDelModal()
   };
 
   const RightAction = () => {
