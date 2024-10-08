@@ -3,23 +3,23 @@ import { Received } from "@/types/Received";
 import { Alert, Image, Pressable, Text, View } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import Icon from "@expo/vector-icons/FontAwesome6";
-import BottomSheet from "@gorhom/bottom-sheet";
-import { useMemo, useRef } from "react";
 
 type Props = {
   item: Received;
-  open: any;
+  open: ()=>void;
+  setId : (newValue : number)=>void;
 };
 
-export const TableItem = ({ item, open }: Props) => {
-  const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ["30%", "80%", "90%"], []);
+export const TableItem = ({ item, open, setId }: Props) => {
 
-  const closeModal = () => {
-    bottomSheetRef.current?.close();
+  
+  const handleEdit = (id: number) => {
+    setId(id)
+    open()
   };
-
-  const openModal = () => bottomSheetRef.current?.expand();
+  const handleExcluir = (id: number) => {
+    Alert.alert("Excluir " + id);
+  };
 
   const RightAction = () => {
     return (
@@ -46,13 +46,6 @@ export const TableItem = ({ item, open }: Props) => {
     );
   };
 
-  const handleEdit = (id: number) => {
-    Alert.alert("Edit " + id);
-    openModal();
-  };
-  const handleExcluir = (id: number) => {
-    Alert.alert("Excluir " + id);
-  };
 
   return (
     <Swipeable renderRightActions={RightAction}>
@@ -63,17 +56,6 @@ export const TableItem = ({ item, open }: Props) => {
           {TranslateInReal(parseFloat(item.value))}
         </Text>
       </View>
-      <BottomSheet
-        ref={bottomSheetRef}
-        index={0}
-        snapPoints={snapPoints}
-        backgroundStyle={{ backgroundColor: "#FFF" }}
-        enablePanDownToClose={true}
-      >
-        <View className="flex-1">
-          <Text>Conteudo do botton Sheet</Text>
-        </View>
-      </BottomSheet>
     </Swipeable>
   );
 };

@@ -2,10 +2,10 @@ import { Header } from "@/components/screens-received-paymants/header";
 import { BgInternalScreen } from "@/components/bg-internal-screen";
 import { Page } from "@/components/project/page";
 import { Received } from "@/types/Received";
-import { Image, Text, View, FlatList } from "react-native";
-import { useMemo, useRef, useState } from "react";
+import { Image, Text, View, FlatList, Modal, Pressable } from "react-native";
+import { useState } from "react";
 import { TableItem } from "@/components/screens-received-paymants/table-item";
-import BottomSheet from "@gorhom/bottom-sheet";
+import { ModalComponent } from "@/components/screens-received-paymants/modal";
 
 export default function Screen() {
   const data: Received[] = [
@@ -21,14 +21,13 @@ export default function Screen() {
     { id: 10, date: "01/10/2024", name: "Receita 5", value: "1000" },
   ];
 
-  const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ["30%", "80%", "90%"], []);
+  const [modal, setModal] = useState(false)
+  const [modalCancel, setModalCancel] = useState(false)
+  const [idElement, setIdElement] = useState(0)
 
-  const closeModal = () => {
-    bottomSheetRef.current?.close();
-  };
-
-  const openModal = () => bottomSheetRef.current?.expand();
+  const handleActiveModal = () => {
+    setModal(true)
+  }
 
   return (
     <Page type={true}>
@@ -62,13 +61,23 @@ export default function Screen() {
                 data={data}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                  <TableItem item={item} open={openModal} />
+                  <TableItem item={item} open={handleActiveModal} setId={setIdElement} />
                 )}
               />
             </View>
           </View>
         </BgInternalScreen>
       </View>
+      <ModalComponent visibleModal={modal} closeModal={setModalCancel} idElement={idElement}>
+            <View className="border-b border-themeDark w-full items-center p-2">
+              <Text>Aqui vem o corpo do modal {idElement}</Text>
+            </View>
+            <View className="mt-2 w-full items-center my-2">
+              <Pressable onPress={()=>setModal(false)} className="bg-themeError px-5 py-3 rounded-lg">
+                <Text className="text-white uppercase ">Fechar</Text>
+              </Pressable>
+            </View>
+      </ModalComponent>
     </Page>
   );
 }
